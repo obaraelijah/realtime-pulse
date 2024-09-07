@@ -59,7 +59,7 @@ pub enum Request {
 
 pub struct Registry {
     ch: mpsc::Sender<Request>,
-    join: tokio::task::JoinHandle<()>,
+    _join: tokio::task::JoinHandle<()>,
 }
 
 impl Registry {
@@ -70,7 +70,7 @@ impl Registry {
         let (tx, rx) = mpsc::channel(10);
         Registry {
             ch: tx.clone(),
-            join: tokio::spawn(async move { Self::main(tx.clone(), rx).await }),
+            _join: tokio::spawn(async move { Self::main(tx.clone(), rx).await }),
         }
     }
 
@@ -176,6 +176,6 @@ impl Registry {
     #[cfg(test)]
     pub async fn stop(self) -> Result<(), tokio::task::JoinError> {
         self.send(Request::Stop).await.expect("TODO");
-        self.join.await
+        self._join.await
     }
 }
