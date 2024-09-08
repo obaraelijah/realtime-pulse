@@ -14,7 +14,7 @@ prometheus = "0.13.3"
 stderrlog = "0.6.0"
 structopt = "0.3.26"
 tokio = { version = "1.25.0", features = ["full"]}
-warp = "0.3.3"
+warp = "0.3"
 #tokio = { version = "1", features = ["full"] }
 #warp = "0.3.7"
 #serde = {version = "1.0", features = ["derive"] }
